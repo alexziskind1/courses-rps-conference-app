@@ -1,0 +1,23 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+  navigatingTo="pageNavigatingTo" actionBarHidden="true">
+
+  <GridLayout rows="auto, *">
+    <!-- HEADER -->
+    <StackLayout cssClass="page-header">
+      <GridLayout cssClass="action-bar">
+        <StackLayout tap="backTap" orientation="horizontal" cssClass="action-wrap" horizontalAlignment="left">
+          <Image stretch="none" cssClass="icon-image" src="res://ic_arrow_back"/>
+          <Label text="Back" cssClass="back-text" />
+        </StackLayout>
+        
+        <Label text="{{ name }}" cssClass="action-bar-title" />
+      </GridLayout>
+    </StackLayout>
+ 
+    <!-- Content -->
+    <GridLayout row="1" cssClass="content">
+      <Image id="imgMap" imageSource="{{ image }}" stretch="aspectFit" horizontalAlignment="left" verticalAlignment="center" swipe="backSwipe" />
+      <ActivityIndicator busy="{{ isLoading }}" horizontalAlignment="center" verticalAlignment="center" />
+    </GridLayout>
+  </GridLayout>
+</Page>

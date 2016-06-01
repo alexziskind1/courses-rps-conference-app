@@ -1,0 +1,82 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      xmlns:drawer="nativescript-telerik-ui/sidedrawer"
+      loaded="pageLoaded" actionBarHidden="true">
+  <drawer:RadSideDrawer id="SideDrawer">  
+      <drawer:RadSideDrawer.drawerTransition>
+          <drawer:SlideInOnTopTransition/>
+      </drawer:RadSideDrawer.drawerTransition>
+    <drawer:RadSideDrawer.drawerContent>
+      <GridLayout rows="*, auto">
+        <StackLayout style="background-color: #053140;">
+          <Image src="res://logo" cssClass="slide-out-img" stretch="none" />
+          <Button tap="selectView" tag="0" cssClass="{{ selectedViewIndex === 0 ? 'slide-out-btn' : 'slide-out-btn-selected' }}" text="My agenda" />
+          <Button tap="selectView" tag="1" cssClass="{{ selectedViewIndex === 1 ? 'slide-out-btn' : 'slide-out-btn-selected' }}" text="All sessions"/>
+          <Button tap="selectView" tag="2" cssClass="{{ selectedViewIndex === 2 ? 'slide-out-btn' : 'slide-out-btn-selected' }}" text="Sponsors" />
+          
+          <Button tap="goToAcknowledgementPage" tag="3" cssClass="{{ selectedViewIndex === 3 ? 'slide-out-btn' : 'slide-out-btn-selected' }}" text="Ackknowledgements" />
+        </StackLayout>
+      </GridLayout>
+  </drawer:RadSideDrawer.drawerContent>
+
+    <drawer:RadSideDrawer.mainContent>
+      <GridLayout rows="auto, *">
+        <!-- Header -->
+        <StackLayout cssClass="page-header">
+          <GridLayout cssClass="action-bar darker">
+            <GridLayout cssClass="action-wrap" tap="showSlideout" columns="auto" horizontalAlignment="left">
+              <Image stretch="none" cssClass="icon-image" src="res://ic_menu"/>
+            </GridLayout>
+            <Label text="{{ actionBarTitle }}" cssClass="action-bar-title" />
+          </GridLayout>
+
+          <GridLayout cssClass="darker" visibility="{{ isSessionsPage ? 'visible' : 'collapsed' }}">
+            <SegmentedBar selectedBackgroundColor="#fac950" items="{{ confDayOptions }}" selectedIndex="{{ selectedIndex }}" />
+          </GridLayout>
+          
+          <Label text="{{ dayHeader }}" cssClass="page-title bold" horizontalAlignment="center" margin="15" visibility="{{ isSessionsPage ? 'visible' : 'collapsed' }}" />
+          
+        </StackLayout>
+
+        <!-- Sessions Views -->
+        <GridLayout  rows="auto, *" row="1" visibility="{{ isSessionsPage ? 'visible' : 'collapsed' }}">
+          <!-- Search -->
+          <SearchBar text="{{ search }}" hint="Search" cssClass="search" textFieldBackgroundColor="white" id="search"/>
+
+          <!-- List -->
+          <ListView items="{{ sessions }}" row="1" separatorColor="#fac950" itemTap="selectSession" cssClass="listView">
+            <ListView.itemTemplate>
+              <GridLayout columns="auto, *" cssClass="{{ isBreak ? 'break-row' : 'list-view-row' }}">
+
+                <GridLayout visibility="{{ isBreak ? 'collapsed' : 'visible' }}"
+                  cssClass="favourite-wrap" tap="toggleFavorite" columns="auto" rows="auto">
+                  <Image id="imgFav" stretch="none" cssClass="icon-image"
+                    src="{{ favorite ? 'res://ic_add_to_fav_1' : 'res://ic_add_to_fav' }}" />
+                </GridLayout>
+
+                <StackLayout col="1">
+                  <Label text="{{ range }}" cssClass="info-orange bold" />
+                  <Label text="{{ title }}" textWrap="true" cssClass="info-bigger"/>
+                  <Label visibility="{{ room ? 'visible' : 'collapsed' }}" text="{{ room }}" cssClass="info-orange" />
+                </StackLayout>
+
+              </GridLayout>
+            </ListView.itemTemplate>
+          </ListView>
+
+          <ActivityIndicator busy="{{ isLoading }}" row="1" horizontalAlignment="center" verticalAlignment="center" />
+        </GridLayout>
+
+
+        <!-- Sponsors -->
+        <StackLayout row="1" visibility="{{ selectedViewIndex === 2 ? 'visible' : 'collapsed'}}" cssClass="content-offset">
+
+          <Image src="res://sponsor_logo_fdg" stretch="aspectFit"/>
+          <Label cssClass="info" textWrap="true" text="FDG - Global Provider of IT Services" />
+          <Image src="res://sponsor_logo_umer" stretch="aspectFit"/>
+          <Label cssClass="info" textWrap="true" text="UMER - Business Intelligence Experts" />
+
+        </StackLayout>
+      </GridLayout>
+    </drawer:RadSideDrawer.mainContent>
+  </drawer:RadSideDrawer>
+</Page>

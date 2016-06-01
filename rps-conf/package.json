@@ -1,0 +1,24 @@
+{
+	"name": "RPSConf",
+	"description": "This is a conference app for RPS",
+	"version": "1.0.0",
+	"nativescript": {
+		"id": "com.nuvious.rpsconf",
+		"tns-android": {
+			"version": "1.7.1"
+		},
+		"tns-ios": {
+			"version": "2.0.0"
+		}
+	},
+	"dependencies": {
+		"rpsconf-options": "file:options",
+		"nativescript-telerik-ui": "^0.1.1",
+		"tns-core-modules": "1.7.1",
+		"faker": "3.1.0"
+	},
+	"devDependencies": {
+		"nativescript-dev-typescript": "^0.3.1",
+		"typescript": "^1.8.9"
+	}
+}

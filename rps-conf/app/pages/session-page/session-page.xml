@@ -1,0 +1,72 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+  navigatingTo="pageNavigatingTo" actionBarHidden="true">
+
+  <GridLayout rows="auto, *" swipe="backSwipe">
+    <!-- HEADER -->
+    <GridLayout columns="auto, *" rows="auto, auto" cssClass="page-header">
+      <GridLayout cssClass="action-bar" colSpan="2">
+        <StackLayout tap="backTap" orientation="horizontal" cssClass="action-wrap" horizontalAlignment="left">
+          <Image stretch="none" cssClass="icon-image" src="res://ic_arrow_back"/>
+          <Label text="Back" cssClass="back-text" />
+        </StackLayout>
+
+        <StackLayout orientation="horizontal" horizontalAlignment="right">
+          <GridLayout cssClass="action-wrap" tap="showMapTap" columns="auto" horizontalAlignment="right"  visibility="{{ room ? 'visible' : 'collapsed' }}">
+            <Image stretch="none" cssClass="icon-image" src="res://ic_map"/>
+          </GridLayout>
+
+          <GridLayout cssClass="action-wrap" tap="shareTap" columns="auto" horizontalAlignment="right">
+            <Image stretch="none" cssClass="icon-image" src="res://ic_share"/>
+          </GridLayout>
+        </StackLayout>
+      </GridLayout>
+
+      <GridLayout row="1" visibility="{{ isBreak ? 'collapsed' : 'visible' }}"
+                  tap="toggleFavorite" columns="auto"
+                  cssClass="favourite-wrap" horizontalAlignment="left">
+        <Image id="imgFav" src="{{ favorite ? 'res://ic_add_to_fav_1' : 'res://ic_add_to_fav' }}" stretch="none" cssClass="icon-image" />
+      </GridLayout>
+
+      <StackLayout margin="16 16 16 0" row="1" col="1">
+        <Label text="{{ title }}" textWrap="true" cssClass="session-page-title" />
+        <Label text="{{ range + ', ' + room }}" textWrap="true" cssClass="session-page-subtitle" />
+      </StackLayout>
+
+    </GridLayout>
+
+    <!-- Content -->
+    <ScrollView row="1" id="scroll">
+      <GridLayout row="1" rows="auto, auto, auto, auto, *" columns="56, *" cssClass="content" >
+        <!-- Description -->
+        <Label cssClass="description" textWrap="true" col="1" id="txtDescription" text="{{ descriptionShort }}" />
+
+        <!-- Button -->
+        <Button text="MORE" tap="toogleDescription" cssClass="more-button" row="1" col="1"/>
+
+        <!-- Line -->
+        <StackLayout cssClass="horizontal-line" row="2" col="1" margin="0 0 0 0"/>
+
+        <!-- Speakers -->
+        <Label text="SPEAKERS" cssClass="section-header" row="3" col="1" />
+
+        <ListView id="sepakers-list" items="{{ speakers }}" row="4" colSpan="2" height="{{ speakers.length * 72 + 46 }}"
+                  selectedBackgroundColor="#fac950" separatorColor="#FFFFFF" >
+          <ListView.itemTemplate>
+            <GridLayout columns="56, *" cssClass="speakers-row" swipe="backSwipe">
+              <Image src="{{ picture }}" cssClass="speaker-image" stretch="aspectFit" rowSpan="2"/>
+
+              <StackLayout col="1" >
+                <StackLayout orientation="horizontal">
+                  <Label text="{{ name }}" cssClass="info bold" />
+                  <Label text="{{ twitterName ? ' (' + twitterName + ')' : '' }}" cssClass="info" style="color: #A17201;" />
+                </StackLayout>
+
+                <Label text="{{ title }}" cssClass="info" textWrap="true" style="font-style: italic;" />
+              </StackLayout>
+            </GridLayout>
+          </ListView.itemTemplate>
+        </ListView>
+      </GridLayout>
+    </ScrollView>
+  </GridLayout>
+</Page>

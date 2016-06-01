@@ -1,0 +1,7 @@
+{
+	"name": "RPSConf",
+	"main": "app.js",
+	"version": "1.0.0",
+	"description": "RPS Conference application",
+	"license": "BSD"
+}

@@ -1,0 +1,186 @@
+/* Page */
+Page {
+    background-color: white;
+}
+
+SegmentedBar {
+    background-color: transparent;
+    color: white;
+}
+
+/* Slide-out */
+.slide-out-img {
+    margin: 16 0 30 16;
+}
+
+.slide-out-btn-about {
+    color: #576a72;
+    background-color: #053140;
+    font-size: 12;
+    text-align: left;
+    margin: 12;
+    font-weight: bold;
+    height: 44;
+}
+
+.slide-out-btn {
+    color: #e4ba4e;
+    background-color: #053140;
+    font-size: 14;
+    height: 48;
+    text-align: left;
+    horizontal-align: stretch;
+}
+
+.slide-out-btn-selected {
+    color: white;
+    background-color: #053140;
+    font-size: 14;
+    height: 48;
+    text-align: left;
+    horizontal-align: stretch;
+}
+
+.action-bar {
+    height: 48;
+}
+
+.action-bar-title {
+    margin: 0 0 0 72;
+    horizontal-align: left;
+    vertical-align: center;
+    font-size: 20;
+    color: white;
+}
+
+.darker {
+    background-color: #55000000;
+}
+
+.page-header {
+    background-image: url('~/images/background.jpg');
+}
+
+.page-title {
+    font-size: 14;
+    color: #fac950;
+}
+
+.session-page-title {
+    font-size: 20;
+    color: #fac950;
+}
+
+.info-page-header {
+    font-size: 20;
+}
+
+.session-page-subtitle {
+    font-size: 13;
+    color: #f7db94;
+}
+
+.action-left-image {
+    vertical-align: center;
+    horizontal-align: left;
+}
+
+.action-wrap {
+    padding-left: 16;
+    padding-right: 16;
+}
+
+.favourite-wrap {
+    horizontal-align: left;
+    padding: 16;
+    width: 52;
+    height: 52;
+    margin-right: 20;
+}
+
+.icon-image {
+    vertical-align: center;
+    horizontal-align: left;
+}
+
+.back-text {
+    visibility: collapsed;
+}
+
+.search {
+    font-size: 14;
+    background-color: #fac950;
+    color: #fac950;
+}
+
+.info {
+    font-size: 14;
+    color: #555555;
+}
+
+.info-bigger {
+    color: #555555;
+    font-size: 16;
+}
+
+.info-orange {
+    font-size: 12;
+    color: #A17201;
+}
+
+.description {
+    font-size: 14;
+    color: #555555;
+}
+
+.more-button {
+    margin: 0 0 0 -12;
+    font-size: 14;
+    color: #05303F;
+    horizontal-align: left;
+    background-color: white;
+}
+
+.section-header {
+    color: #A17201;
+}
+
+.horizontal-line {
+    height: 1;
+    background-color: #FAC950;
+    vertical-align: center;
+    margin: 12 0 8 0;
+}
+
+/* List rows */
+.break-row {
+    padding: 12 16;
+    background-color: #FFFBF0;
+}
+
+.list-view-row {
+    padding: 12 16 12 0;
+}
+
+.speakers-row {
+    padding-top: 16;
+}
+
+.speaker-image {
+    horizontal-align: left;
+    vertical-align: top;
+    margin-right: 12;
+}
+
+.content {
+    margin: 16;
+}
+
+.content-offset {
+    padding: 16 16 16 72;
+    background-color: #ffffff;
+}
+
+.listView{
+  background-color: #ffffff;
+}
