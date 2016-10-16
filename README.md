@@ -1,9 +1,11 @@
 # RPS Conference App code 
 
+##NOTE: If you are using version 2.3 of NativeScript, use the ```update_2.3.0``` branch
+
 This is a companion app to my Pluralsight course Building Cross Platform Native Mobile Applications with NativeScript.
 This app is based on the [TelerikNEXT app](https://github.com/NativeScript/sample-TelerikNEXT/) sample with a few things added.
 
-Fork/clone the repository and run npm install in the rps-conf directory. 
+Fork/clone the repository and run ```npm install``` in the rps-conf directory. 
 This app is based on the Telerik NEXT app sample with a few things added.
 
 Use this application to find-out how to implement common mobile scenarios with NativeScript.

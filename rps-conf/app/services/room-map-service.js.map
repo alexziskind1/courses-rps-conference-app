@@ -1,1 +1,0 @@
-{"version":3,"file":"room-map-service.js","sourceRoot":"","sources":["room-map-service.ts"],"names":[],"mappings":";AACA,IAAY,iBAAiB,WAAM,cAAc,CAAC,CAAA;AAEvC,0BAAkB,GAAG,iBAAiB,CAAC,QAAQ,CAAC,6BAA6B,CAAC,CAAC;AAE1F,sBAA6B,IAAc,EAAE,MAAsD;IAE/F,2CAA2C;IAC3C,UAAU,CAAC;QACP,MAAM,CAAC,0BAAkB,CAAC,CAAC;IAC/B,CAAC,EAAE,IAAI,CAAC,CAAC;AACb,CAAC;AANe,oBAAY,eAM3B,CAAA"}
