@@ -7,6 +7,8 @@ import * as appModule from 'application';
 import * as typesModule from 'utils/types';
 
 
+declare var EKEntityTypeEvent, java, android, EKEventStore, EKEvent, NSTimeZone, EKSpan, NSError, EKAlarm;
+
 var REMIDER_MINUTES = 5;
 var FAVOURITES = 'FAVOURITES';
 export var favourites: Array<FavouriteSession>;
@@ -82,7 +84,8 @@ export function addToFavourites(session: SessionViewModel) {
 
         } else if (platformModule.device.os === platformModule.platformNames.ios) {
             var store = EKEventStore.new()
-            store.requestAccessToEntityTypeCompletion(EKEntityTypeEvent, (granted: boolean, error: NSError) => {
+
+            store.requestAccessToEntityTypeCompletion(EKEntityTypeEvent, (granted: boolean, error: any) => {
                 if (!granted) {
                     return;
                 }
@@ -90,14 +93,16 @@ export function addToFavourites(session: SessionViewModel) {
                 var event = EKEvent.eventWithEventStore(store);
                 event.title = session.title;
                 event.timeZone = NSTimeZone.alloc().initWithName("UTC-05:00");
-                event.startDate = NSDate.dateWithTimeIntervalSince1970(session.startDt.getTime() / 1000);
-                event.endDate = NSDate.dateWithTimeIntervalSince1970(session.endDt.getTime() / 1000);
+                event.startDate = session.startDt;
+                event.endDate = session.endDt;
+                //event.startDate = NSDate.dateWithTimeIntervalSince1970(session.startDt.getTime() / 1000);
+                //event.endDate = NSDate.dateWithTimeIntervalSince1970(session.endDt.getTime() / 1000);
                 event.calendar = store.defaultCalendarForNewEvents;
                 event.location = session.room;
                 event.addAlarm(EKAlarm.alarmWithRelativeOffset(-REMIDER_MINUTES * 60));
 
-                var err: NSError;
-                var result = store.saveEventSpanCommitError(event, EKSpan.EKSpanThisEvent, true);
+                var err;
+                var result = store.saveEventSpanCommitError(event, EKSpan.ThisEvent, true);
 
                 session.calendarEventId = event.eventIdentifier;
                 persistSessionToFavourites(session);
@@ -130,14 +135,14 @@ export function removeFromFavourites(session: SessionViewModel) {
             appModule.android.foregroundActivity.getApplicationContext().getContentResolver().delete(deleteUri, null, null);
         } else if (platformModule.device.os === platformModule.platformNames.ios) {
             var store = EKEventStore.new()
-            store.requestAccessToEntityTypeCompletion(EKEntityTypeEvent, (granted: boolean, error: NSError) => {
+            store.requestAccessToEntityTypeCompletion(EKEntityTypeEvent, (granted: boolean, error: any) => {
                 if (!granted) {
                     return;
                 }
 
                 var eventToRemove = store.eventWithIdentifier(session.calendarEventId);
                 if (eventToRemove) {
-                    store.removeEventSpanCommitError(eventToRemove, EKSpan.EKSpanThisEvent, true);
+                    store.removeEventSpanCommitError(eventToRemove, EKSpan.ThisEvent, true);
                     session.calendarEventId = undefined;
                 }
             });

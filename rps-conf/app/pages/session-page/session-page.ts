@@ -1,6 +1,6 @@
 ﻿import { EventData } from 'data/observable';
 import { GestureEventData, SwipeGestureEventData, SwipeDirection } from 'ui/gestures';
-import { Page, NavigatedData } from 'ui/page'; 
+import { Page, NavigatedData } from 'ui/page';
 import { Button } from 'ui/button';
 import { Label } from 'ui/label';
 import { ScrollView } from 'ui/scroll-view';
@@ -12,6 +12,9 @@ import * as platformModule from 'platform';
 import * as utilsModule from 'utils/utils';
 import * as navigationModule from '../../shared/navigation';
 import * as animationHelperModule from '../../shared/animation-helper';
+
+
+declare var android, UIActivityViewController;
 
 var vm: SessionViewModel;
 var page: Page;
@@ -25,9 +28,9 @@ export function pageNavigatingTo(args: NavigatedData) {
 export function toggleFavorite(args: GestureEventData) {
     var gl = <any>args.object;
     var img = gl.getViewById('imgFav');
-    
+
     animationHelperModule.popAnimate(img)
-        .then(()=>{
+        .then(() => {
             vm.toggleFavorite();
         });
 }
@@ -39,7 +42,7 @@ export function shareTap(args: GestureEventData) {
         var speakerNames = '';
         var byStr = vm.speakers.forEach((sp, i, arr) => {
             if (sp.twitterName) {
-                speakerNames +=  sp.twitterName + ' ';
+                speakerNames += sp.twitterName + ' ';
             }
         });
 
@@ -62,9 +65,10 @@ export function shareTap(args: GestureEventData) {
     else if (platformModule.device.os === platformModule.platformNames.ios) {
         var currentPage = frameModule.topmost().currentPage;
 
-        var controller = new UIActivityViewController(utilsModule.ios.collections.jsArrayToNSArray([shareText]), null);
+        let controllerOptions = { activityItems: utilsModule.ios.collections.jsArrayToNSArray([shareText]), applicationActivities: null };
+        var controller = new UIActivityViewController(controllerOptions);
 
-        (<UIViewController>currentPage.ios).presentViewControllerAnimatedCompletion(controller, true, null);
+        (<any>currentPage.ios).presentViewControllerAnimatedCompletion(controller, true, null);
     }
 }
 

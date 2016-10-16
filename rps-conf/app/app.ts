@@ -1,9 +1,8 @@
 ﻿import * as appModule from 'application';
 import * as navigationModule from './shared/navigation';
 
-if(appModule.android) {
-    appModule.onLaunch = function (intent) {
-        console.log('onLaunch');
+if (appModule.android) {
+    appModule.on(appModule.launchEvent, function (args) {
         appModule.android.onActivityCreated = function (activity) {
             console.log('onCreated');
             var id = activity.getResources().getIdentifier('AppTheme', 'style', activity.getPackageName());
@@ -17,12 +16,13 @@ if(appModule.android) {
                 window.setBackgroundDrawable(null);
             }
         }
-    }
+    });
+
 }
 
 // Set the start module for the application
-appModule.mainModule = navigationModule.startingPage();
-appModule.cssFile = 'styles/app.css';
+(<any>appModule).mainModule = navigationModule.startingPage();
+(<any>appModule).cssFile = 'styles/app.css';
 
 // Start the application
 appModule.start();
