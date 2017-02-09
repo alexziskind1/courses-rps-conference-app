@@ -1,6 +1,19 @@
 # RPS Conference App code 
 
-##NOTE: If you are using version 2.3 of NativeScript, use the ```update_2.3.0``` branch
+## NOTE: If you are using version 2.5.0 of NativeScript CLI, there is currently an issue with it not copying all required files. Here's how to fix it...
+
+To solve the problem, use the @next version which has the problem fixed and use the branch called ```update_2.5.0``` of this repository
+
+To install the @next version of the NativeScript CLI on Windows:
+```
+npm install nativescript@next -g
+```
+
+To install the @next version of the NativeScript CLI on a Mac:
+```
+sudo npm install nativescript@next -g
+```
+
 
 This is a companion app to my Pluralsight course Building Cross Platform Native Mobile Applications with NativeScript.
 This app is based on the [TelerikNEXT app](https://github.com/NativeScript/sample-TelerikNEXT/) sample with a few things added.
