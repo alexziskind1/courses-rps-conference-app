@@ -1,8 +1,9 @@
 ﻿import * as appModule from 'application';
 import * as navigationModule from './shared/navigation';
+import * as frameModule from 'ui/frame';
 
-if(appModule.android) {
-    appModule.onLaunch = function (intent) {
+if (appModule.android) {
+    appModule.on('launch', () => {
         console.log('onLaunch');
         appModule.android.onActivityCreated = function (activity) {
             console.log('onCreated');
@@ -17,12 +18,13 @@ if(appModule.android) {
                 window.setBackgroundDrawable(null);
             }
         }
-    }
+    });
 }
 
 // Set the start module for the application
-appModule.mainModule = navigationModule.startingPage();
-appModule.cssFile = 'styles/app.css';
+let navEntry: frameModule.NavigationEntry = {
+    moduleName: navigationModule.startingPage()
+};
 
 // Start the application
-appModule.start();
+appModule.start(navEntry);
