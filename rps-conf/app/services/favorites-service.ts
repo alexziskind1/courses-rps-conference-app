@@ -6,7 +6,7 @@ import * as platformModule from 'platform';
 import * as appModule from 'application';
 import * as typesModule from 'utils/types';
 
-/*
+
 declare const java: any;
 declare const android: any;
 declare const EKEventStore: any;
@@ -16,7 +16,7 @@ declare const NSDate: any;
 declare const NSTimeZone: any;
 declare const EKAlarm: any;
 declare const EKSpan: any;
-*/
+
 
 
 var REMIDER_MINUTES = 5;
@@ -66,26 +66,6 @@ export function removeFromFavourites(session: SessionViewModel) {
     if (index >= 0) {
         favourites.splice(index, 1);
         updateFavourites();
-    }
-
-    if (session.calendarEventId) {
-        if (platformModule.device.os === platformModule.platformNames.android) {
-            var deleteUri = android.content.ContentUris.withAppendedId(android.provider.CalendarContract.Events.CONTENT_URI, parseInt(session.calendarEventId));
-            appModule.android.foregroundActivity.getApplicationContext().getContentResolver().delete(deleteUri, null, null);
-        } else if (platformModule.device.os === platformModule.platformNames.ios) {
-            var store = EKEventStore.new()
-            store.requestAccessToEntityTypeCompletion(EKEntityTypeEvent, (granted: boolean, error: any/* NSError*/) => {
-                if (!granted) {
-                    return;
-                }
-
-                var eventToRemove = store.eventWithIdentifier(session.calendarEventId);
-                if (eventToRemove) {
-                    store.removeEventSpanCommitError(eventToRemove, EKSpan.EKSpanThisEvent, true);
-                    session.calendarEventId = undefined;
-                }
-            });
-        }
     }
 }
 
