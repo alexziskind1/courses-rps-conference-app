@@ -1,18 +1,7 @@
 # RPS Conference App code 
 
-## NOTE: If you are using version 2.5.0 of NativeScript CLI, there is currently an issue with it not copying all required files. Here's how to fix it...
+## This demo app has been updated to NativeScript version 3.1.1
 
-To solve the problem, use the @next version which has the problem fixed and use the branch called ```update_2.5.0``` of this repository. Make sure you have an up to date version of Node as well. 
-
-To install the @next version of the NativeScript CLI on Windows:
-```
-npm install nativescript@next -g
-```
-
-To install the @next version of the NativeScript CLI on a Mac:
-```
-sudo npm install nativescript@next -g
-```
 
 Clone this repository
 ```
@@ -24,9 +13,9 @@ Go into the repository directory
 cd courses-rps-conference-app
 ```
 
-Change to the ```update_2.5.0``` branch
+Change to the ```update_3.1.1``` branch
 ```
-git checkout update_2.5.0
+git checkout update_3.1.1
 ```
 
 Go into the project directory
@@ -39,7 +28,7 @@ Run the project on iOS
 tns run ios
 ```
 
-Run the project on Android (I start up my Genymotion emulator before this step)
+Run the project on Android
 ```
 tns run android
 ```
