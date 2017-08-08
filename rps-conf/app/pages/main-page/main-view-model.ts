@@ -1,6 +1,7 @@
 ﻿import { Observable } from 'data/observable';
+import { SegmentedBarItem } from 'ui/segmented-bar';
 import { ConferenceDay, Speaker, RoomInfo, Session, FavouriteSession } from '../../shared/interfaces';
-import { SessionViewModel } from '../session-page/session-view-model'; 
+import { SessionViewModel } from '../session-page/session-view-model';
 import { SessionsService } from '../../services/sessions-service';
 import { conferenceDays } from '../../shared/static-data';
 import * as favoritesServiceModule from '../../services/favorites-service';
@@ -12,7 +13,7 @@ export class MainViewModel extends Observable {
     private _allSessions: Array<SessionViewModel> = new Array<SessionViewModel>();
     private _sessions: Array<SessionViewModel>;
     private _sessionsService: SessionsService;
-    
+
     public selectedViewIndex: number;
 
     constructor() {
@@ -25,9 +26,15 @@ export class MainViewModel extends Observable {
         this.set('isSessionsPage', true);
         this.init();
     }
-   
-    get confDayOptions(): Array<ConferenceDay> {
-        return conferenceDays;
+
+    get confDayOptions(): Array<SegmentedBarItem> {
+        const items = [];
+        conferenceDays.forEach(cd => {
+            let segmentedBarItem = new SegmentedBarItem();
+            segmentedBarItem.title = cd.title;
+            items.push(segmentedBarItem);
+        });
+        return items;
     }
 
     get sessions(): Array<SessionViewModel> {
@@ -35,7 +42,7 @@ export class MainViewModel extends Observable {
     }
 
     get favorites(): Array<SessionViewModel> {
-        return this.sessions.filter(i=> { return i.favorite });
+        return this.sessions.filter(i => { return i.favorite });
     }
 
     get search(): string {
@@ -75,7 +82,7 @@ export class MainViewModel extends Observable {
                 this.onDataLoaded();
             });
     }
-    
+
     private pushSessions(sessionsFromService: Array<Session>) {
         for (var i = 0; i < sessionsFromService.length; i++) {
             var newSession = new SessionViewModel(sessionsFromService[i]);
@@ -87,20 +94,20 @@ export class MainViewModel extends Observable {
             this._allSessions.push(newSession);
         }
     }
-    
+
     private onDataLoaded() {
         this.set('isLoading', false);
         this.filter();
     }
-    
+
     private filter() {
-        this._sessions = this._allSessions.filter(s=> {
+        this._sessions = this._allSessions.filter(s => {
             return s.startDt.getDate() === conferenceDays[this.selectedIndex].date.getDate()
                 && s.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) >= 0;
         });
 
         if (this.selectedViewIndex === 0) {
-            this._sessions = this._sessions.filter(i=> { return i.favorite || i.isBreak; });
+            this._sessions = this._sessions.filter(i => { return i.favorite || i.isBreak; });
         }
 
         this.notify({ object: this, eventName: Observable.propertyChangeEvent, propertyName: "sessions", value: this._sessions });

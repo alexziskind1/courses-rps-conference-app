@@ -5,19 +5,19 @@ import * as frameModule from 'ui/frame';
 if (appModule.android) {
     appModule.on('launch', () => {
         console.log('onLaunch');
-        appModule.android.onActivityCreated = function (activity) {
+        appModule.android.on('activityCreated', (activity: any) => {
             console.log('onCreated');
             var id = activity.getResources().getIdentifier('AppTheme', 'style', activity.getPackageName());
             activity.setTheme(id);
-        }
+        });
 
-        appModule.android.onActivityStarted = function (activity) {
+        appModule.android.on('activityStarted', (activity: any) => {
             console.log('onStarted');
             var window = activity.getWindow();
             if (window) {
                 window.setBackgroundDrawable(null);
             }
-        }
+        });
     });
 }
 

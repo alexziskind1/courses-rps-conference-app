@@ -1,28 +1,20 @@
 {
-  "name": "RPSConf",
   "description": "This is a conference app for RPS",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "nativescript": {
     "id": "com.nuvious.rpsconf",
-    "tns-android": {
-      "version": "2.5.0"
-    },
     "tns-ios": {
-      "version": "2.5.0"
+      "version": "3.1.0"
     }
   },
   "dependencies": {
-    "faker": "3.1.0",
-    "nativescript-telerik-ui": "1.6.0",
-    "rpsconf-options": "file:options",
-    "tns-core-modules": "2.5.0"
+    "@types/faker": "^3.1.32",
+    "faker": "^3.1.0",
+    "nativescript-telerik-ui": "3.0.4",
+    "tns-core-modules": "3.1.1"
   },
   "devDependencies": {
-    "babel-traverse": "6.22.1",
-    "babel-types": "6.22.0",
-    "babylon": "6.15.0",
-    "lazy": "1.0.11",
-    "nativescript-dev-typescript": "^0.3.5",
-    "typescript": "2.1.6"
+    "nativescript-dev-typescript": "0.5.0",
+    "typescript": "2.2.1"
   }
 }

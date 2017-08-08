@@ -3,19 +3,19 @@
 
   <GridLayout rows="auto, *">
     <!-- HEADER -->
-    <StackLayout cssClass="page-header">
-      <GridLayout cssClass="action-bar">
-        <StackLayout tap="backTap" orientation="horizontal" cssClass="action-wrap" horizontalAlignment="left">
-          <Image stretch="none" cssClass="icon-image" src="res://ic_arrow_back"/>
-          <Label text="Back" cssClass="back-text" />
+    <StackLayout class="page-header">
+      <GridLayout class="action-bar">
+        <StackLayout tap="backTap" orientation="horizontal" class="action-wrap" horizontalAlignment="left">
+          <Image stretch="none" class="icon-image" src="res://ic_arrow_back"/>
+          <Label text="Back" class="back-text" />
         </StackLayout>
         
-        <Label text="{{ name }}" cssClass="action-bar-title" />
+        <Label text="{{ name }}" class="action-bar-title" />
       </GridLayout>
     </StackLayout>
  
     <!-- Content -->
-    <GridLayout row="1" cssClass="content">
+    <GridLayout row="1" class="content">
       <Image id="imgMap" imageSource="{{ image }}" stretch="aspectFit" horizontalAlignment="left" verticalAlignment="center" swipe="backSwipe" />
       <ActivityIndicator busy="{{ isLoading }}" horizontalAlignment="center" verticalAlignment="center" />
     </GridLayout>
